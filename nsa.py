@@ -95,7 +95,7 @@ def main():
 		elif args.print_json:
 			pass
 		else:
-			run.delay(target)
+			run.delay(target, args.project)
 
 
 if __name__ == "__main__":
