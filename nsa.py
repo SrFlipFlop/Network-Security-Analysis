@@ -57,14 +57,17 @@ def exist_target(target, project):
 
 def create_asset(target, project):
 	if os.path.isdir(project):
-		x = str(list(ip_network(u'{}'.format(targets), strict=False).hosts())[0])
+		x = str(list(ip_network(u'{}'.format(target), strict=False).hosts())[0])
 		network = "{0}.{1}-{2}".format('.'.join(x.split('.')[:-1]), 0, target.split('/')[-1])
 		ip = target.replace('/', '-')		
 		os.makedirs("{0}{1}/{2}".format(project, network, ip))
+	else:
+		log("Project folder does not exist", 2)
+		raise SystemExit
 
 def update_asset(target, project):
 	if os.path.isdir(project):
-		x = str(list(ip_network(u'{}'.format(targets), strict=False).hosts())[0])
+		x = str(list(ip_network(u'{}'.format(target), strict=False).hosts())[0])
 		network = "{0}.{1}-{2}".format('.'.join(x.split('.')[:-1]), 0, target.split('/')[-1])
 		ip = target.replace('/', '-')
 		new_dir = datetime.datetime.now().strftime("%d-%m-%Y_%H:%M:%S")
