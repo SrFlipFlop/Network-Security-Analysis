@@ -24,7 +24,6 @@ def log(msg, level=0):
 
 def parse_targets(targets):
 	ips = []
-
 	if ',' in targets:
 		hosts, mask = targets.split('/')
 		ips = map(lambda x: "{0}/{1}".format(x, mask), hosts.split(','))
@@ -43,8 +42,7 @@ def parse_targets(targets):
 		if IPv4Address(base) in hosts:
 			ips = [targets]
 		else:
-			ips = map(lambda x: "{0}/{1}".format(x, mask), hosts)
-	
+			ips = map(lambda x: "{0}/{1}".format(x, mask), hosts)	
 	return ips
 
 def exist_target(target, project):
@@ -61,6 +59,7 @@ def create_asset(target, project):
 		network = "{0}.{1}-{2}".format('.'.join(x.split('.')[:-1]), 0, target.split('/')[-1])
 		ip = target.replace('/', '-')		
 		os.makedirs("{0}{1}/{2}".format(project, network, ip))
+		return "{0}{1}/{2}/".format(project, network, ip)
 	else:
 		log("Project folder does not exist", 2)
 		raise SystemExit
@@ -72,6 +71,7 @@ def update_asset(target, project):
 		ip = target.replace('/', '-')
 		new_dir = datetime.datetime.now().strftime("%d-%m-%Y_%H:%M:%S")
 		shutil.copytree("{0}{1}/{2}".format(project, network, ip), "{0}{1}/{2}/{3}".format(project, network, ip, new_dir))
+		return "{0}{1}/{2}/".format(project, network, ip)
 
 def main():
 	parser = ArgumentParser()
@@ -89,16 +89,18 @@ def main():
 	targets = parse_targets(args.target)
 	for target in targets:
 		if not exist_target(target, args.project):
-			create_asset(target, args.project)
+			path = create_asset(target, args.project)
+			print path
 		else:
-			pass #update_asset(target, args.project)
-
+			path = update_asset(target, args.project)
+			print path
+			
 		if args.print_normal:
 			pass
 		elif args.print_json:
 			pass
 		else:
-			run.delay(target, args.project)
+			run.delay(target, path)
 
 
 if __name__ == "__main__":
