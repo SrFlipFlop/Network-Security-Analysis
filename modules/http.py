@@ -103,3 +103,8 @@ def sqlmap(ip, project):
 	cmd = "sqlmap -u http://{0} --forms --batch --crawl=10 --level=5 --risk=3 | tee {1}/http/sqlmap_out.txt".format(ip, project)
 	p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE)
 	c = p.communicate()
+    
+def dirb(ip, project):
+    cmd = "dirb http://{0}/ | tee {1}/http/dirb_out.txt".format(ip, project)
+    p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE)
+    c = p.communicate()
