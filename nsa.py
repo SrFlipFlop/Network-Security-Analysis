@@ -90,10 +90,9 @@ def main():
 	for target in targets:
 		if not exist_target(target, args.project):
 			path = create_asset(target, args.project)
-			print path
+			
 		else:
 			path = update_asset(target, args.project)
-			print path
 			
 		if args.print_normal:
 			pass
