@@ -3,6 +3,8 @@ from subprocess import Popen, PIPE
 
 import os
 
+print app
+
 @app.task
 def run(ip, project):
 	create_folder(project)

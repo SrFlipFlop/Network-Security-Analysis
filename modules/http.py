@@ -8,6 +8,8 @@ def run(ip, project):
 	create_folder(project)
 	nmap_scripts(ip, project)
 	nikto(ip, project)
+	sqlmap(ip, project)
+	dirb(ip, project)
 
 def create_folder(project):
 	os.makedirs("{0}http/".format(project))
@@ -89,7 +91,7 @@ def nmap_scripts(ip, project):
 		"http-wordpress-users.nse",
 		"http-xssed.nse",
 	]
-	for script in ssh_scripts:
+	for script in http_scripts:
 		cmd = "nmap -sT --script {0} -oN {1}http/nmap_{2} {3}".format(script, project, script.replace('.nse', ''), ip)
 		p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE)
 		c = p.communicate()
