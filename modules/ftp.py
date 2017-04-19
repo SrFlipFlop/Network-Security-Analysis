@@ -5,8 +5,10 @@ import os
 
 @app.task
 def run(ip, project):
+	print "[!] Start ftp module"
 	create_folder(project)
 	nmap_scripts(ip, project)
+	print "[!] End ftp module"
 
 def create_folder(project):
 	os.makedirs("{0}ftp/".format(project))

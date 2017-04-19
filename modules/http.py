@@ -5,11 +5,13 @@ import os
 
 @app.task
 def run(ip, project):
+	print "[!] Start http module"
 	create_folder(project)
 	nmap_scripts(ip, project)
 	nikto(ip, project)
 	sqlmap(ip, project)
 	dirb(ip, project)
+	print "[!] End http module"
 
 def create_folder(project):
 	os.makedirs("{0}http/".format(project))

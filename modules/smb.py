@@ -5,8 +5,10 @@ import os
 
 @app.task
 def run(ip, project):
+	print "[!] Start smb module"
 	create_folder(project)
 	nmap_scripts(ip, project)
+	print "[!] End smb module"
 
 def create_folder(project):
 	os.makedirs("{0}smb/".format(project))

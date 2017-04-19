@@ -7,8 +7,10 @@ print app
 
 @app.task
 def run(ip, project):
+	print "[!] Start ssh module"
 	create_folder(project)
 	nmap_scripts(ip, project)
+	print "[!] End ssh module"
 
 def create_folder(project):
 	os.makedirs("{0}ssh/".format(project))

@@ -5,8 +5,10 @@ import os
 
 @app.task
 def run(ip, project):
+	print "[!] Start snmp module"
 	create_folder(project)
 	nmap_scripts(ip, project)
+	print "[!] End snmp module"
 
 def create_folder(project):
 	os.makedirs("{0}snmp/".format(project))
