@@ -13,7 +13,10 @@ def run(ip, project):
 	print "[!] End ssh module"
 
 def create_folder(project):
-	os.makedirs("{0}ssh/".format(project))
+	try:
+		os.makedirs("{0}ssh/".format(project))
+	except:
+		pass
 
 def nmap_scripts(ip, project):
 	ssh_scripts = [

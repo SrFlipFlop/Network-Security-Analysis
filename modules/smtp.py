@@ -11,7 +11,10 @@ def run(ip, project):
 	print "[!] End smtp module"
 
 def create_folder(project):
-	os.makedirs("{0}smtp/".format(project))
+	try:
+		os.makedirs("{0}smtp/".format(project))
+	except:
+		pass
 
 def nmap_scripts(ip, project):
 	ssh_scripts = [

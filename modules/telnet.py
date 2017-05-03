@@ -11,7 +11,10 @@ def run(ip, project):
 	print "[!] End telnet module"
 
 def create_folder(project):
-	os.makedirs("{0}telnet/".format(project))
+	try:
+		os.makedirs("{0}telnet/".format(project))
+	except:
+		pass
 
 def nmap_scripts(ip, project):
 	telnet_scripts = [

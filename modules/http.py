@@ -14,7 +14,10 @@ def run(ip, project):
 	print "[!] End http module"
 
 def create_folder(project):
-	os.makedirs("{0}http/".format(project))
+	try:
+		os.makedirs("{0}http/".format(project))
+	except:
+		pass
 
 def nmap_scripts(ip, project):
 	http_scripts = [

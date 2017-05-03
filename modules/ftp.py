@@ -11,7 +11,10 @@ def run(ip, project):
 	print "[!] End ftp module"
 
 def create_folder(project):
-	os.makedirs("{0}ftp/".format(project))
+	try:
+		os.makedirs("{0}ftp/".format(project))
+	except:
+		pass
 
 def nmap_scripts(ip, project):
 	ssh_scripts = [
