@@ -8,7 +8,7 @@ import os
 
 @app.task
 def run(ip, project):
-    launch_nmap(ip, project)
+    #launch_nmap(ip, project)
     modules = load_modules()
     services = analyze_nmap(ip, project)
     search_exploits.delay(project)

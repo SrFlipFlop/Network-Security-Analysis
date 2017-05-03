@@ -46,7 +46,7 @@ def nmap_scripts(ip, project):
 	]
 
 	for script in ssh_scripts:
-		cmd = "nmap -sT --script={0} -oN {1}smb/nmap_{2}".format(script, project, script.replace('.nse', ''))
+		cmd = "nmap -sT --script={0} -oN {1}smb/nmap_{2} {3}".format(script, project, script.replace('.nse', ''), ip)
 		p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE)
 		c = p.communicate()
 
