@@ -17,7 +17,7 @@ def run(ip, project):
 @app.task
 def search_exploits(path):
 	log("Start searchsploit", 1)
-	cmd="searchsploit --nmap {0}nmap_out.xml | {0}vulns.txt".format(path)
+	cmd="searchsploit --nmap {0}nmap_out.xml > {0}vulns.txt".format(path)
 	p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE)
 	c = p.communicate()
 	log("End searchsploit", 1)
